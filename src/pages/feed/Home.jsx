@@ -10,8 +10,8 @@ const Home = () => {
 
   return (
     <div>
-      <h1>{user.id}</h1>
-      {currentUserInfo.username}
+      {!isLoading && <h1>{user.id}</h1>}
+      {!gettingData && <p>{currentUserInfo.username}</p>}
     </div>
   );
 };
