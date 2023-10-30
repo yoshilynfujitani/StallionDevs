@@ -13,6 +13,7 @@ export function useSignUp() {
 
     onSuccess: () => {
       console.log("susccess");
+      navigate("/");
     },
     onError: (err) => {
       toast.error(err.message);
