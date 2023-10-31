@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import { getUsers } from "../../services/apiUser";
+import { getUsers } from "../services/apiUser";
 
 export function useGetUsers() {
   const { data: userInfo, isLoading } = useQuery({

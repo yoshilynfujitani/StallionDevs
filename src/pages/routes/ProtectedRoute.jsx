@@ -9,15 +9,17 @@ const ProtectedRoute = ({ children }) => {
   console.log(isAuthenticated);
   useEffect(
     function () {
-      if (!isAuthenticated && !isLoading) navigate("/login");
-      console.log("You are not an authrorized user!");
-      navigate("/login");
+      if (!isAuthenticated && !isLoading) {
+        console.log("You are not an authorized user!");
+        navigate("/login");
+      }
     },
     [isAuthenticated, isLoading, navigate, user]
   );
 
   if (isLoading) return <h1>Loading...</h1>;
-  return children;
+
+  if (isAuthenticated && !isLoading) return children;
 };
 
 export default ProtectedRoute;

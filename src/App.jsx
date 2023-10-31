@@ -6,6 +6,7 @@ import Home from "./pages/feed/Home";
 import Login from "./pages/auth/Login";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import ProtectedRoute from "./pages/routes/ProtectedRoute";
+import AppLayout from "./pages/AppLayout";
 
 function App() {
   const queryClient = new QueryClient();
@@ -22,7 +23,7 @@ function App() {
             <Route
               element={
                 <ProtectedRoute>
-                  <Outlet />
+                  <AppLayout />
                 </ProtectedRoute>
               }
             >
