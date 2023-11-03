@@ -12,3 +12,15 @@ export async function getPostDetails() {
 
   return posts;
 }
+
+export async function addPost({ id, title, desc }) {
+  const { data, error } = await supabase
+    .from("posts")
+    .insert([{ userId: id, postTitle: title, postDesc: desc }])
+    .select();
+
+  if (error) {
+    console.log(error.message);
+  }
+  return data;
+}
