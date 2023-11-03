@@ -1,7 +1,7 @@
 import { useGetUsers } from "./userGetUsers";
-import { useUser } from "../pages/auth/useUser";
+import { useUser } from "../../pages/auth/useUser";
 import { useState } from "react";
-import { uploadAvatar } from "../services/apiUser";
+import { uploadAvatar } from "../../services/apiUser";
 import { useLogOut } from "./useLogOut";
 
 const Navbar = () => {

@@ -7,6 +7,7 @@ import Login from "./pages/auth/Login";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import ProtectedRoute from "./pages/routes/ProtectedRoute";
 import AppLayout from "./pages/AppLayout";
+import AddPost from "./components/addPost/AddPost";
 
 function App() {
   const queryClient = new QueryClient();
@@ -28,6 +29,7 @@ function App() {
               }
             >
               <Route path="/home" element={<Home />} />
+              <Route path="/addpost" element={<AddPost />} />
             </Route>
           </Routes>
         </BrowserRouter>
