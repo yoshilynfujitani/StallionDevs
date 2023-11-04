@@ -1,3 +1,4 @@
+import { Link, useSearchParams } from "react-router-dom";
 import { usePosts } from "./usePosts";
 
 const Home = () => {
@@ -6,8 +7,12 @@ const Home = () => {
   if (isLoading) return <p>is Loading...</p>;
   return (
     <div className="">
-      {posts.map((post, index) => (
-        <div key={post.postId}>{post.postTitle}</div>
+      {posts.map((post) => (
+        <>
+          <Link to={`/post/${post.postId}`}>
+            <div key={post.postId}>{post.postTitle}</div>
+          </Link>
+        </>
       ))}
     </div>
   );
