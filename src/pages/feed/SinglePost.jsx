@@ -1,14 +1,18 @@
 import React from "react";
 import { useParams } from "react-router-dom";
 import { usePosts } from "./usePosts";
+import AddComment from "../../components/addComment/AddComment";
+import { useUser } from "../auth/useUser";
 
 const SinglePost = () => {
   const { id } = useParams();
   const { posts, isLoading } = usePosts();
+  const { isAuthenticated, user } = useUser();
 
   const post = posts?.find((item) => item.postId === Number(id));
 
   if (isLoading) return <p>Loading...</p>;
+  console.log(user);
 
   console.log(post);
 
@@ -21,7 +25,7 @@ const SinglePost = () => {
           <>
             <div className="flex items-center">
               <img
-                src={item.profile.userAvatar}
+                src={item?.profile.userAvatar}
                 className="w-14 h-14 rounded-full"
                 alt=""
               />
@@ -33,6 +37,7 @@ const SinglePost = () => {
       ) : (
         <div>Be the first one to comment!</div>
       )}
+      <AddComment userDetails={user.id} postDetails={post.postId} />
     </div>
   );
 };
