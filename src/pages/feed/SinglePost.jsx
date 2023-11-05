@@ -18,10 +18,8 @@ const SinglePost = () => {
   const post = posts?.find((item) => item.postId === Number(id));
   const isLiked = post?.likes.find((item) => item.id === user.id);
   const postId = post?.postId;
+  let numberOfLikes = post?.likes.length;
   if (isLoading) return <p>Loading...</p>;
-
-  console.log(post);
-  console.log(user.id);
 
   function handleLikeButton(e) {
     e.preventDefault();
@@ -47,7 +45,7 @@ const SinglePost = () => {
           onClick={handleLikeButton}
         ></button>
       )}
-      <h2>Likes</h2>
+      <h2>{numberOfLikes} Likes</h2>
       <h1>Comments</h1>
       {post.comment ? (
         post.comment.map((item) => (
