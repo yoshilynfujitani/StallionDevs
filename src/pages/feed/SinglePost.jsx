@@ -3,22 +3,51 @@ import { useParams } from "react-router-dom";
 import { usePosts } from "./usePosts";
 import AddComment from "../../components/addComment/AddComment";
 import { useUser } from "../auth/useUser";
+import { useLikePost } from "./useLikePost";
+import { useUnlikePost } from "./useUnlikePost";
 
 const SinglePost = () => {
   const { id } = useParams();
   const { posts, isLoading } = usePosts();
   const { isAuthenticated, user } = useUser();
+  const { likePost, likingPost } = useLikePost();
+  const { unlikePost, unlikingPost } = useUnlikePost();
+
+  const userId = user?.id;
 
   const post = posts?.find((item) => item.postId === Number(id));
-
+  const isLiked = post?.likes.find((item) => item.id === user.id);
+  const postId = post?.postId;
   if (isLoading) return <p>Loading...</p>;
-  console.log(user);
 
   console.log(post);
+  console.log(user.id);
+
+  function handleLikeButton(e) {
+    e.preventDefault();
+    likePost({ userId: userId, postId: postId });
+  }
+
+  function handleUnLikeButton(e) {
+    e.preventDefault();
+    unlikePost({ userId: userId });
+  }
 
   return (
     <div>
       {post?.postTitle}
+      {isLiked ? (
+        <button
+          className="h-5 w-5 rounded-full bg-green-500"
+          onClick={handleUnLikeButton}
+        ></button>
+      ) : (
+        <button
+          className="h-5 w-5 rounded-full bg-red-500"
+          onClick={handleLikeButton}
+        ></button>
+      )}
+      <h2>Likes</h2>
       <h1>Comments</h1>
       {post.comment ? (
         post.comment.map((item) => (
@@ -37,7 +66,7 @@ const SinglePost = () => {
       ) : (
         <div>Be the first one to comment!</div>
       )}
-      <AddComment userDetails={user.id} postDetails={post.postId} />
+      <AddComment userDetails={userId} postDetails={postId} />
     </div>
   );
 };

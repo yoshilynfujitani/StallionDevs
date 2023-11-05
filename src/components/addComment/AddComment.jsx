@@ -8,6 +8,7 @@ const AddComment = ({ userDetails, postDetails }) => {
   function handleSubmit(e) {
     e.preventDefault();
     addComment({ userId: userDetails, postId: postDetails, comment: comment });
+    setComment("");
   }
   return (
     <div>
@@ -16,6 +17,7 @@ const AddComment = ({ userDetails, postDetails }) => {
         type="text"
         className="border"
         onChange={(e) => setComment(e.target.value)}
+        defaultValue={comment}
       />
       <button className="" onClick={handleSubmit} disabled={creatingComment}>
         Add Comment
