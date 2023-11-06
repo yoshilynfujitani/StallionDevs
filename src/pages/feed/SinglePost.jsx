@@ -5,6 +5,7 @@ import AddComment from "../../components/addComment/AddComment";
 import { useUser } from "../auth/useUser";
 import { useLikePost } from "./useLikePost";
 import { useUnlikePost } from "./useUnlikePost";
+import moment from "moment/moment";
 
 const SinglePost = () => {
   const { id } = useParams();
@@ -30,10 +31,11 @@ const SinglePost = () => {
     e.preventDefault();
     unlikePost({ userId: userId });
   }
-
+  console.log(post);
   return (
     <div>
       {post?.postTitle}
+      <h1>posted {moment(post.created_at).fromNow()}</h1>
       {isLiked ? (
         <button
           className="h-5 w-5 rounded-full bg-green-500"
@@ -58,7 +60,11 @@ const SinglePost = () => {
               />
               <h1>{item.profile.username}</h1>
             </div>
-            <p className="pl-10"> {item.comment}</p>
+            <p className="pl-10">
+              {" "}
+              {item.comment}{" "}
+              <span>posted {moment(item.created_at).fromNow()}</span>
+            </p>
           </>
         ))
       ) : (
