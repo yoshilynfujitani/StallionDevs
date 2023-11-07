@@ -6,7 +6,7 @@ import { Toaster } from "react-hot-toast";
 const AppLayout = () => {
   return (
     <>
-      <Toaster />
+      <Toaster position="bottom-left" />
       <Navbar />
       <Outlet />
     </>

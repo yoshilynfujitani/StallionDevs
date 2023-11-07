@@ -11,3 +11,14 @@ export async function addComment({ userId, postId, comment }) {
 
   return data;
 }
+
+export async function deleteComment(commentId) {
+  const { error } = await supabase
+    .from("comment")
+    .delete()
+    .eq("commentId", commentId);
+
+  if (error) {
+    console.log(error.message);
+  }
+}

@@ -12,8 +12,8 @@ export function useSignUp() {
       signUpAPI({ email, password, name }),
 
     onSuccess: () => {
-      console.log("susccess");
-      navigate("/");
+      console.log("success");
+      navigate("/login");
     },
     onError: (err) => {
       toast.error(err.message);

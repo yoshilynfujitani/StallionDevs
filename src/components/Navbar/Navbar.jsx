@@ -47,10 +47,10 @@ const Navbar = () => {
         )}
       </div>
       {/* Avatar upload */}
-      {/* <div className="">
+      <div className="">
         <input type="file" accept="image/*" onChange={handleImageChange} />
         <button onClick={handleUploadAvatar}>Upload Avatar</button>
-      </div> */}
+      </div>
     </nav>
   );
 };

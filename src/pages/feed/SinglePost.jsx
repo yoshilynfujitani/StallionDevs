@@ -6,6 +6,7 @@ import { useUser } from "../auth/useUser";
 import { useLikePost } from "./useLikePost";
 import { useUnlikePost } from "./useUnlikePost";
 import moment from "moment/moment";
+import { useDeleteComment } from "../../components/addComment/useDeleteComment";
 
 const SinglePost = () => {
   const { id } = useParams();
@@ -13,6 +14,7 @@ const SinglePost = () => {
   const { isAuthenticated, user } = useUser();
   const { likePost, likingPost } = useLikePost();
   const { unlikePost, unlikingPost } = useUnlikePost();
+  const { deleteComment, deletetingComment } = useDeleteComment();
 
   const userId = user?.id;
 
@@ -47,7 +49,11 @@ const SinglePost = () => {
           onClick={handleLikeButton}
         ></button>
       )}
-      <h2>{numberOfLikes} Likes</h2>
+      <h2>
+        {numberOfLikes === 0
+          ? "Be the first one to like the post"
+          : `${numberOfLikes} Likes`}{" "}
+      </h2>
       <h1>Comments</h1>
       {post.comment ? (
         post.comment.map((item) => (
@@ -65,6 +71,16 @@ const SinglePost = () => {
               {item.comment}{" "}
               <span>posted {moment(item.created_at).fromNow()}</span>
             </p>
+            {userId === item.id ? (
+              <button
+                disabled={deletetingComment}
+                onClick={() => deleteComment(item?.commentId)}
+              >
+                Delete comment
+              </button>
+            ) : (
+              ""
+            )}
           </>
         ))
       ) : (
