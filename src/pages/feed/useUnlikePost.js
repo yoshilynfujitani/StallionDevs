@@ -8,7 +8,6 @@ export function useUnlikePost() {
     mutationFn: unlikePostAPI,
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["posts"] });
-      toast.success("You liked the post");
     },
     onError: (err) => {
       toast.error(err.message);

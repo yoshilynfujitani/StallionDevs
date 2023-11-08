@@ -4,7 +4,7 @@ export async function getPostDetails() {
   let { data: posts, error } = await supabase
     .from("posts")
     .select(
-      "postId, postTitle, postDesc,created_at, comment(commentId, id, postId, comment,created_at, profile(username, userAvatar)), likes(id, postId, isLiked).count()"
+      "postId, postTitle, postDesc,created_at,userId, comment(commentId, id, postId, comment,created_at, profile(username, userAvatar)), likes(id, postId, isLiked).count()"
     );
   if (error) {
     console.log(error.message);
@@ -23,4 +23,12 @@ export async function addPost({ id, title, desc }) {
     console.log(error.message);
   }
   return data;
+}
+
+export async function deletePost(postId) {
+  const { error } = await supabase.from("posts").delete().eq("postId", postId);
+
+  if (error) {
+    console.log(error.message);
+  }
 }

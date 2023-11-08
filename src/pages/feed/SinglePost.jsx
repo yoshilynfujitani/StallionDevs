@@ -7,14 +7,16 @@ import { useLikePost } from "./useLikePost";
 import { useUnlikePost } from "./useUnlikePost";
 import moment from "moment/moment";
 import { useDeleteComment } from "../../components/addComment/useDeleteComment";
+import { useDeletePost } from "../../components/addPost/useDeletePost";
 
 const SinglePost = () => {
   const { id } = useParams();
   const { posts, isLoading } = usePosts();
-  const { isAuthenticated, user } = useUser();
+  const { user } = useUser();
   const { likePost, likingPost } = useLikePost();
   const { unlikePost, unlikingPost } = useUnlikePost();
   const { deleteComment, deletetingComment } = useDeleteComment();
+  const { deletePost, deletingPost } = useDeletePost();
 
   const userId = user?.id;
 
@@ -33,20 +35,27 @@ const SinglePost = () => {
     e.preventDefault();
     unlikePost({ userId: userId });
   }
-  console.log(post);
+  console.log(post.postId);
   return (
     <div>
       {post?.postTitle}
       <h1>posted {moment(post.created_at).fromNow()}</h1>
+      {post.userId === userId ? (
+        <button onClick={() => deletePost(post?.postId)}>Delete Post</button>
+      ) : (
+        ""
+      )}
       {isLiked ? (
         <button
           className="h-5 w-5 rounded-full bg-green-500"
           onClick={handleUnLikeButton}
+          disabled={unlikingPost}
         ></button>
       ) : (
         <button
           className="h-5 w-5 rounded-full bg-red-500"
           onClick={handleLikeButton}
+          disabled={likingPost}
         ></button>
       )}
       <h2>
