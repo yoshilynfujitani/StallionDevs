@@ -4,7 +4,7 @@ export async function getPostDetails() {
   let { data: posts, error } = await supabase
     .from("posts")
     .select(
-      "postId, postTitle, postDesc,created_at,userId, comment(commentId, id, postId, comment,created_at, profile(username, userAvatar)), likes(id, postId, isLiked).count()"
+      "postId, postTitle, postDesc,created_at,userId, comment(commentId, id, postId, comment,created_at, profile(username, userAvatar)), likes(id, postId, isLiked)"
     );
   if (error) {
     console.log(error.message);
