@@ -7,7 +7,7 @@ export function useLikePost() {
   const { mutate: likePost, isLoading: likingPost } = useMutation({
     mutationFn: likePostAPI,
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["posts"] });
+      queryClient.invalidateQueries({ queryKey: ["post"] });
       toast.success("You liked the post");
     },
     onError: (err) => {

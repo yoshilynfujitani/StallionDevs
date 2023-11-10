@@ -8,7 +8,7 @@ export function useAddComment() {
     mutationFn: addCommentAPI,
     onSuccess: () => {
       toast.success("Comment Added Succesfully!");
-      queryClient.invalidateQueries({ queryKey: ["posts"] });
+      queryClient.invalidateQueries({ queryKey: ["post"] });
     },
     onError: (err) => {
       toast.error(err.message);

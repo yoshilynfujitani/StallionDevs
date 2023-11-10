@@ -7,7 +7,7 @@ export function useUnlikePost() {
   const { mutate: unlikePost, isLoading: unlikingPost } = useMutation({
     mutationFn: unlikePostAPI,
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["posts"] });
+      queryClient.invalidateQueries({ queryKey: ["post"] });
     },
     onError: (err) => {
       toast.error(err.message);

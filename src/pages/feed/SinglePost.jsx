@@ -11,7 +11,7 @@ import { usePost } from "./usePost";
 
 const SinglePost = () => {
   const { post, isLoading } = usePost();
-  let currentPost = post.SinglePosts[0];
+  let currentPost = post?.SinglePosts[0];
 
   const { user } = useUser();
   const { likePost, likingPost } = useLikePost();
