@@ -6,6 +6,7 @@ const Home = () => {
   const { posts, isLoading } = usePosts();
 
   if (isLoading) return <p>is Loading...</p>;
+  console.log(posts);
   return (
     <div className="">
       <Filter
