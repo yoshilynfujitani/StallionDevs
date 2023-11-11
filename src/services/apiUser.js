@@ -1,7 +1,10 @@
 import supabase, { supabaseUrl } from "./supabase";
 
-export async function getUsers() {
-  let { data: profile, error } = await supabase.from("profile").select("*");
+export async function getUser(userId) {
+  let { data: profile, error } = await supabase
+    .from("profile")
+    .select("*")
+    .eq("id", userId);
   if (error) {
     throw new Error(error.message);
   }

@@ -1,9 +1,14 @@
 import { useQuery } from "@tanstack/react-query";
-import { getUsers } from "../../services/apiUser";
+import { getUser } from "../../services/apiUser";
+import { useUser } from "../../pages/auth/useUser";
 
 export function useGetUsers() {
+  const { user } = useUser();
+
+  let userId = user.id;
+
   const { data: userInfo, isLoading } = useQuery({
-    queryFn: getUsers,
+    queryFn: () => getUser(userId),
     queryKey: ["users"],
   });
 

@@ -6,7 +6,7 @@ import { useUser } from "../auth/useUser";
 const ProtectedRoute = ({ children }) => {
   const navigate = useNavigate();
   const { isAuthenticated, isLoading, user } = useUser();
-  console.log(isAuthenticated);
+
   useEffect(
     function () {
       if (!isAuthenticated && !isLoading) {

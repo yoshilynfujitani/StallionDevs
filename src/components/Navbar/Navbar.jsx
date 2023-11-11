@@ -5,12 +5,13 @@ import { uploadAvatar } from "../../services/apiUser";
 import { useLogOut } from "./useLogOut";
 
 const Navbar = () => {
-  const { isAuthenticated, user } = useUser();
+  const { isAuthenticated } = useUser();
   const { userInfo, isLoading: gettingData } = useGetUsers();
   const [selectedImage, setSelectedImage] = useState(null);
   const { logout, isLoading: isLoggingOut } = useLogOut();
 
-  const currentUserInfo = userInfo?.find((users) => users.id === user.id);
+  if (gettingData) return <h1>Loading...</h1>;
+  const currentUserInfo = userInfo[0];
 
   const handleImageChange = (e) => {
     const file = e.target.files[0];
