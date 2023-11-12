@@ -43,7 +43,10 @@ const SinglePost = () => {
       {currentPost?.postTitle}
       <h1>posted {moment(currentPost.created_at).fromNow()}</h1>
       {currentPost.userId === userId ? (
-        <button onClick={() => deletePost(currentPost?.postId)}>
+        <button
+          onClick={() => deletePost(currentPost?.postId)}
+          disabled={deletingPost}
+        >
           Delete Post
         </button>
       ) : (
@@ -71,7 +74,7 @@ const SinglePost = () => {
       {currentPost.comment ? (
         currentPost.comment.map((item) => (
           <>
-            <div className="flex items-center">
+            <div className="flex items-center" key={item.id}>
               <img
                 src={item?.profile.userAvatar}
                 className="w-14 h-14 rounded-full"
