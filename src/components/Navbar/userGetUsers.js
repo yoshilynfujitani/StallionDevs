@@ -9,7 +9,7 @@ export function useGetUsers() {
 
   const { data: userInfo, isLoading } = useQuery({
     queryFn: () => getUser(userId),
-    queryKey: ["users"],
+    queryKey: ["currentUser"],
   });
 
   return { isLoading, userInfo };
