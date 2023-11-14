@@ -21,13 +21,24 @@ export async function getPostDetails({ category }) {
   return posts;
 }
 
-export async function getSinglePost(id) {
-  let { data: SinglePosts, error } = await supabase
+export async function getSinglePost({ id, page }) {
+  console.log(page);
+  let query = supabase
     .from("posts")
     .select(
-      "postId, postTitle, postDesc,created_at,userId, comment(commentId, id, postId, comment,created_at, profile(username, userAvatar)), likes(id, postId, isLiked)"
+      "postId, postTitle, postDesc,created_at,userId, comment(commentId, id, postId, comment,created_at, profile(username, userAvatar)), likes(id, postId, isLiked), commentCount:comment(count)"
     )
     .eq("postId", id);
+
+  if (page) {
+    const from = (page - 1) * 5;
+    const to = from + 5 - 1;
+    query = query.range(from, to, {
+      foreignTable: "comment",
+    });
+  }
+
+  let { data: SinglePosts, error } = await query;
 
   if (error) {
     console.log(error.message);

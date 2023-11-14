@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 import AddComment from "../../components/addComment/AddComment";
 import { useUser } from "../auth/useUser";
@@ -8,11 +8,13 @@ import moment from "moment/moment";
 import { useDeleteComment } from "../../components/addComment/useDeleteComment";
 import { useDeletePost } from "../../components/addPost/useDeletePost";
 import { usePost } from "./usePost";
+import { useSearchParams } from "react-router-dom";
+import CommentPagination from "./CommentPagination";
 
 const SinglePost = () => {
   const { post, isLoading } = usePost();
   let currentPost = post?.SinglePosts[0];
-
+  const [searchParams, setSearchParams] = useSearchParams();
   const { user } = useUser();
   const { likePost, likingPost } = useLikePost();
   const { unlikePost, unlikingPost } = useUnlikePost();
@@ -26,7 +28,7 @@ const SinglePost = () => {
   let numberOfLikes = currentPost?.likes.length;
   if (isLoading) return <p>Loading...</p>;
 
-  console.log();
+  console.log(currentPost);
 
   function handleLikeButton(e) {
     e.preventDefault();
@@ -103,6 +105,7 @@ const SinglePost = () => {
         <div>Be the first one to comment!</div>
       )}
       <AddComment userDetails={userId} postDetails={postId} />
+      <CommentPagination count={currentPost.commentCount[0].count} />
     </div>
   );
 };
