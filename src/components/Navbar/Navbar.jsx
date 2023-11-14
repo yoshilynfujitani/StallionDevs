@@ -1,31 +1,18 @@
 import { useGetUsers } from "./userGetUsers";
 import { useUser } from "../../pages/auth/useUser";
-import { useState } from "react";
-import { uploadAvatar } from "../../services/apiUser";
+
 import { useLogOut } from "./useLogOut";
+import UploadAvatar from "../uploadAvatar/uploadAvatar";
 
 const Navbar = () => {
   const { isAuthenticated } = useUser();
   const { userInfo, isLoading: gettingData } = useGetUsers();
-  const [selectedImage, setSelectedImage] = useState(null);
+
   const { logout, isLoading: isLoggingOut } = useLogOut();
 
   if (gettingData) return <h1>Loading...</h1>;
   const currentUserInfo = userInfo[0];
-
-  const handleImageChange = (e) => {
-    const file = e.target.files[0];
-    setSelectedImage(file);
-  };
-
-  const handleUploadAvatar = (e) => {
-    e.preventDefault();
-    uploadAvatar({
-      user: currentUserInfo,
-      newImage: selectedImage,
-      id: currentUserInfo.id,
-    });
-  };
+  console.log(currentUserInfo);
 
   return (
     <nav className="container flex items0center justify-between px-10 py-2">
@@ -47,11 +34,8 @@ const Navbar = () => {
           </div>
         )}
       </div>
-      {/* Avatar upload */}
-      <div className="">
-        <input type="file" accept="image/*" onChange={handleImageChange} />
-        <button onClick={handleUploadAvatar}>Upload Avatar</button>
-      </div>
+      {/* Avatar pload */}
+      <UploadAvatar userInfo={currentUserInfo} />
     </nav>
   );
 };
