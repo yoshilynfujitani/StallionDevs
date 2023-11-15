@@ -10,6 +10,7 @@ import { useDeletePost } from "../../components/addPost/useDeletePost";
 import { usePost } from "./usePost";
 import { useSearchParams } from "react-router-dom";
 import CommentPagination from "./CommentPagination";
+import Back from "../../utils/Back";
 
 const SinglePost = () => {
   const { post, isLoading } = usePost();
@@ -42,6 +43,9 @@ const SinglePost = () => {
 
   return (
     <div>
+      <div className="">
+        <Back />
+      </div>
       {currentPost?.postTitle}
       <h1>posted {moment(currentPost.created_at).fromNow()}</h1>
       {currentPost.userId === userId ? (
