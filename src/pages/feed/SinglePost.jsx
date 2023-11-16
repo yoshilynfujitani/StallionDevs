@@ -44,7 +44,7 @@ const SinglePost = () => {
   return (
     <div>
       <div className="">
-        <Back />
+        <Back destination={"/home"} />
       </div>
       {currentPost?.postTitle}
       <h1>posted {moment(currentPost.created_at).fromNow()}</h1>
@@ -109,7 +109,9 @@ const SinglePost = () => {
         <div>Be the first one to comment!</div>
       )}
       <AddComment userDetails={userId} postDetails={postId} />
-      <CommentPagination count={currentPost.commentCount[0].count} />
+      {currentPost.commentCount[0].count > 5 && (
+        <CommentPagination count={currentPost.commentCount[0].count} />
+      )}
     </div>
   );
 };
