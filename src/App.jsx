@@ -9,6 +9,7 @@ import ProtectedRoute from "./pages/routes/ProtectedRoute";
 import AppLayout from "./pages/AppLayout";
 import AddPost from "./components/addPost/AddPost";
 import SinglePost from "./pages/feed/SinglePost";
+import Welcome from "./pages/Welcome";
 
 function App() {
   const queryClient = new QueryClient();
@@ -19,8 +20,10 @@ function App() {
         <ReactQueryDevtools initialIsOpen={false} />
         <BrowserRouter>
           <Routes>
-            <Route path="/" element={<SignUp />} />
-            <Route path="/login" element={<Login />} />
+            <Route path="/" element={<Welcome />}>
+              <Route path="/" element={<SignUp />} />
+              <Route path="/login" element={<Login />} />
+            </Route>
 
             <Route
               element={
