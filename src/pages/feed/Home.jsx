@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { usePosts } from "./usePosts";
 import Filter from "../../ui/Filter";
+import PostCard from "../../components/PostCard";
 
 const Home = () => {
   const { posts, isLoading } = usePosts();
@@ -8,7 +9,7 @@ const Home = () => {
   if (isLoading) return <p>is Loading...</p>;
 
   return (
-    <div className="">
+    <div className=" bg-[#2c2c2c]  text-white overflow-clip container h-screen px-52">
       <h1>
         Share your thoughts.{" "}
         <Link to="/addpost">
@@ -23,11 +24,14 @@ const Home = () => {
           "Announcements",
         ]}
       />
-      {posts.map((post) => (
-        <Link to={`/post/${post.postId}`} key={post.postId}>
-          <div>{post.postTitle}</div>
-        </Link>
-      ))}
+      <div className="grid grid-cols-4  gap-5 w-full py-10">
+        {" "}
+        {posts.map((post) => (
+          <Link to={`/post/${post.postId}`} key={post.postId}>
+            <PostCard postDetails={post} />
+          </Link>
+        ))}
+      </div>
     </div>
   );
 };

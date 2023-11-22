@@ -4,6 +4,8 @@ import { useUser } from "../../pages/auth/useUser";
 import { useLogOut } from "./useLogOut";
 import UploadAvatar from "../uploadAvatar/uploadAvatar";
 
+import { FaCode } from "react-icons/fa";
+
 const Navbar = () => {
   const { isAuthenticated } = useUser();
   const { userInfo, isLoading: gettingData } = useGetUsers();
@@ -15,8 +17,11 @@ const Navbar = () => {
   console.log(currentUserInfo);
 
   return (
-    <nav className="container flex items0center justify-between px-10 py-2">
-      <div className="">Stallion Developers Batac</div>
+    <nav className="bg-[#1d1d1d] flex items-center justify-between px-10 py-2 text-white drop-shadow-md font-ubuntu">
+      <div className="text-2xl font-bold flex items-center gap-2 bg-gradient-to-r from-rose-500 via-orange-400 to-sky-600 bg-clip-text text-transparent">
+        <FaCode className="text-clip" />
+        Stallion Developers Batac
+      </div>
       <div className="flex items-center">
         <div className="flex items-center">
           <img
@@ -35,7 +40,7 @@ const Navbar = () => {
         )}
       </div>
       {/* Avatar pload */}
-      <UploadAvatar userInfo={currentUserInfo} />
+      {/* <UploadAvatar userInfo={currentUserInfo} /> */}
     </nav>
   );
 };
