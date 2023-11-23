@@ -5,6 +5,7 @@ import { useLogOut } from "./useLogOut";
 import UploadAvatar from "../uploadAvatar/uploadAvatar";
 
 import { FaCode } from "react-icons/fa";
+import Filter from "../../ui/Filter";
 
 const Navbar = () => {
   const { isAuthenticated } = useUser();
@@ -18,19 +19,21 @@ const Navbar = () => {
 
   return (
     <nav className="bg-[#1d1d1d] flex items-center justify-between px-10 py-2 text-white drop-shadow-md font-ubuntu">
-      <div className="text-2xl font-bold flex items-center gap-2 bg-gradient-to-r from-rose-500 via-orange-400 to-sky-600 bg-clip-text text-transparent">
-        <FaCode className="text-clip" />
-        Stallion Developers Batac
+      <div className="text-2xl  flex items-center gap-2 bg-gradient-to-r from-rose-500 via-orange-400 to-sky-600 bg-clip-text text-transparent">
+        <FaCode className="text-red-500 " />
+        Stallion Developers
+      </div>
+      <div className="">
+        <Filter
+          options={[
+            "General",
+            "Bugs and Glitches",
+            "Improvements",
+            "Announcements",
+          ]}
+        />
       </div>
       <div className="flex items-center">
-        <div className="flex items-center">
-          <img
-            src={currentUserInfo?.userAvatar}
-            alt=""
-            className="w-12 h-12 rounded-full"
-          />
-          {!gettingData && <p>{currentUserInfo.username}</p>}
-        </div>
         {isAuthenticated && (
           <div className="">
             <button onClick={logout} disabled={isLoggingOut}>

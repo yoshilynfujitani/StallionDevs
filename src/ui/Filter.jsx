@@ -13,14 +13,16 @@ function Filter({ options }) {
   return (
     <>
       {" "}
-      <div className="space-x-2">
+      <div className="space-x-10">
         {options.map((option) => (
           <button
             key={option}
             onClick={() => handleClick(option)}
             disabled={option === currentFilter}
           >
-            {option}
+            <h1 className="transition-all hover:text-blue-500 font-thin text-sm">
+              {option}
+            </h1>
           </button>
         ))}
       </div>

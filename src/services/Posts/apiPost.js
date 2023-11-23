@@ -4,7 +4,7 @@ export async function getPostDetails({ category }) {
   let query = supabase
     .from("posts")
     .select(
-      "postId, postTitle, postDesc,created_at,userId, comment(commentId, id, postId, comment,created_at, profile(username, userAvatar)), likes(id, postId, isLiked)"
+      "postId, postTitle, postDesc,created_at,userId, comment(count), likes(id, postId, isLiked)"
     );
 
   if (category === "all" || category === undefined) {
