@@ -6,6 +6,7 @@ import UploadAvatar from "../uploadAvatar/uploadAvatar";
 
 import { FaCode } from "react-icons/fa";
 import Filter from "../../ui/Filter";
+import { Link } from "react-router-dom";
 
 const Navbar = () => {
   const { isAuthenticated } = useUser();
@@ -19,10 +20,13 @@ const Navbar = () => {
 
   return (
     <nav className="bg-[#1d1d1d] flex items-center justify-between px-10 py-2 text-white drop-shadow-md font-ubuntu">
-      <div className="text-2xl  flex items-center gap-2 bg-gradient-to-r from-rose-500 via-orange-400 to-sky-600 bg-clip-text text-transparent">
-        <FaCode className="text-red-500 " />
-        Stallion Developers
-      </div>
+      <Link to="/home">
+        {" "}
+        <div className="text-2xl  flex items-center gap-2 bg-gradient-to-r from-rose-500 via-orange-400 to-sky-600 bg-clip-text text-transparent">
+          <FaCode className="text-red-500 " />
+          Stallion Developers
+        </div>
+      </Link>
       <div className="">
         <Filter
           options={[

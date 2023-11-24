@@ -10,8 +10,8 @@ const AppLayout = () => {
       <Toaster position="bottom-left" />
       <Navbar />
       <div className="flex bg-[#2c2c2c] min-h-screen">
-        <div className="w-1/4 flex justify-center ">
-          <div className="fixed ">
+        <div className="w-1/4 flex justify-center mx-10   ">
+          <div className="w-full flex justify-center">
             <Dashboard />
           </div>
         </div>
