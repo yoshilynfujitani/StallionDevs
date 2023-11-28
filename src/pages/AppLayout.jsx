@@ -2,7 +2,7 @@ import React from "react";
 import Navbar from "../components/Navbar/Navbar";
 import { Outlet } from "react-router-dom";
 import { Toaster } from "react-hot-toast";
-import Dashboard from "./auth/Dashboard";
+import Dashboard from "./dashboard/Dashboard";
 
 const AppLayout = () => {
   return (

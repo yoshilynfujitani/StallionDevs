@@ -47,6 +47,21 @@ export async function getSinglePost({ id, page }) {
   return { SinglePosts, error };
 }
 
+export async function getUserPosts(userId) {
+  let { data: posts, error } = await supabase
+    .from("posts")
+    .select(
+      "postId, postTitle, postDesc,created_at,userId, comment(count), likes(id, postId, isLiked)"
+    )
+    .eq("userId", userId);
+
+  if (error) {
+    console.log(error.message);
+  }
+
+  return posts;
+}
+
 export async function addPost({ id, title, desc, category }) {
   const { data, error } = await supabase
     .from("posts")
