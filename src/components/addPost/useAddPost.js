@@ -12,6 +12,7 @@ export function useAddPost() {
     onSuccess: () => {
       toast.success("Added Post!");
       queryClient.invalidateQueries({ queryKey: ["posts"] });
+      queryClient.invalidateQueries({ queryKey: ["usersPost"] });
       navigate("/home");
     },
     onError: (err) => {

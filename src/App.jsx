@@ -10,6 +10,7 @@ import AppLayout from "./pages/AppLayout";
 import AddPost from "./components/addPost/AddPost";
 import SinglePost from "./pages/feed/SinglePost";
 import Welcome from "./pages/Welcome";
+import UsersPost from "./pages/feed/UsersPost";
 
 function App() {
   const queryClient = new QueryClient();
@@ -35,6 +36,7 @@ function App() {
               <Route path="/home" element={<Home />} />
               <Route path="/addpost" element={<AddPost />} />
               <Route path="/post/:id" element={<SinglePost />} />
+              <Route path="/yourposts" element={<UsersPost />} />
             </Route>
           </Routes>
         </BrowserRouter>

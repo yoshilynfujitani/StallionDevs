@@ -1,11 +1,15 @@
 import React from "react";
 import { useGetUsers } from "../../components/Navbar/userGetUsers";
 import moment from "moment";
+import { useUsersPost } from "./userUsersPost";
+import { Link } from "react-router-dom";
 
 const Dashboard = () => {
   const { userInfo, isLoading: gettingData } = useGetUsers();
-  if (gettingData) return <h1>isLoading...</h1>;
-  console.log(userInfo);
+  const { data, isLoading } = useUsersPost();
+
+  if (gettingData && isLoading) return <h1>isLoading...</h1>;
+
   return (
     <div className="fixed  bg-[#252525] w-1/4  mx-10 my-10 rounded-md">
       <div className="flex flex-col justify-center mx-5 my-10 space-y-5">
@@ -22,7 +26,12 @@ const Dashboard = () => {
             member since {moment(userInfo[0].created_at).fromNow()}
           </h1>
         </div>
-        <div className="bg-[#1d1d1d] py-5 rounded-md">Your Posts</div>
+        <Link to="/yourposts">
+          {" "}
+          <div className="bg-[#1d1d1d] py-5 rounded-md text-white text-center">
+            Your Posts {data?.length}
+          </div>
+        </Link>
         <div className="">
           <label
             className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"

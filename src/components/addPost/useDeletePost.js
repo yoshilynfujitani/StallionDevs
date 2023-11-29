@@ -10,6 +10,7 @@ export function useDeletePost() {
     mutationFn: deletePostAPI,
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["posts"] });
+      queryClient.invalidateQueries({ queryKey: ["usersPost"] });
       navigate("/home");
       toast.success("Post deleted Successfully");
     },
