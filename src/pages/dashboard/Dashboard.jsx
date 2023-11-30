@@ -1,4 +1,3 @@
-import React from "react";
 import { useGetUsers } from "../../components/Navbar/userGetUsers";
 import moment from "moment";
 import { useUsersPost } from "./userUsersPost";
@@ -15,15 +14,15 @@ const Dashboard = () => {
       <div className="flex flex-col justify-center mx-5 my-10 space-y-5">
         <div className="flex flex-col items-center bg-[#1d1d1d]  rounded-md py-5">
           <img
-            src={userInfo[0].userAvatar}
+            src={userInfo[0]?.userAvatar}
             alt=""
             className="w-48 h-48 rounded-full"
           />
           <h1 className="text-center text-white font-semibold text-4xl py-2">
-            u/{userInfo[0].username}
+            u/{userInfo[0]?.username}
           </h1>
           <h1 className="text-sm italic text-gray-300 text-center">
-            member since {moment(userInfo[0].created_at).fromNow()}
+            member since {moment(userInfo[0]?.created_at).fromNow()}
           </h1>
         </div>
         <Link to="/yourposts">
